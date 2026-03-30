@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications – Simone Colavecchia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .pub-hero {
+            padding: 80px 40px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 30px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .topic-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 40px 60px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .topic-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .topic-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pub-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .pub-card:hover {
+            transform: translateX(8px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .pub-card.coming-soon {
+            opacity: 0.4;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .pub-title {
+            font-size: 16px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .pub-platform {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 4px;
+        }
+
+        .pub-arrow {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.3);
+            transition: color 0.3s;
+        }
+
+        .pub-card:hover .pub-arrow {
+            color: #fff;
+        }
+
+        .coming-badge {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#contact">Contact</a>
+        <a href="#">Download CV</a>
+    </nav>
+
+    <div class="pub-hero">
+        <a href="/" class="back-link">← Back to portfolio</a>
+        <h1>Publications</h1>
+        <p>A collection of my research and writing across law, finance and policy.</p>
+        <input type="text" id="searchBar" placeholder="Search publications..." style="
+    width: 100%;
+    padding: 14px 20px;
+    margin-top: 30px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+">
+    </div>
+
+    <!-- BUSINESS & FINANCE -->
+    <div class="topic-section">
+        <div class="topic-label">Business & Finance</div>
+
+        <a href="https://www.corporatelawacademy.net/post/credit-linked-notes-a-look-at-structured-finance-tools"
+            target="_blank" class="pub-card">
+            <div>
+                <div class="pub-title">Credit-Linked Notes – A look at structured finance tools</div>
+                <div class="pub-platform">Corporate Law Academy</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <a href="https://www.lawtalktoday.co.uk/post/rise-of-bnpl" target="_blank" class="pub-card">
+            <div>
+                <div class="pub-title">The Rise of BNPL</div>
+                <div class="pub-platform">Law Talk Today</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <a href="https://www.corporatelawacademy.net/post/the-market-s-reaction-to-trump-2-0" target="_blank"
+            class="pub-card">
+            <div>
+                <div class="pub-title">The Market Reaction to Trump 2.0</div>
+                <div class="pub-platform">Corporate Law Academy</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <a href="https://www.corporatelawacademy.net/post/the-ascend-of-colossal-biotech-cloning-and-de-extinction"
+            target="_blank" class="pub-card">
+            <div>
+                <div class="pub-title">The Ascend of Colossal Biotech</div>
+                <div class="pub-platform">Corporate Law Academy</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <a href="https://www.corporatelawacademy.net/post/polizze-w-i-e-gestione-del-rischio-nei-contratti-di-acquisizione-societaria-tra-normativa-e-prassi"
+            target="_blank" class="pub-card">
+            <div>
+                <div class="pub-title">Polizze W&I</div>
+                <div class="pub-platform">Corporate Law Academy</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <a href="https://www.lawtalktoday.co.uk/post/predatory-lending-a-danger-to-society" target="_blank"
+            class="pub-card">
+            <div>
+                <div class="pub-title">Predatory Lending – A danger to society</div>
+                <div class="pub-platform">Law Talk Today</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <a href="https://www.corporatelawacademy.net/post/from-vision-to-velocity-how-open-ai-transformed-its-mission"
+            target="_blank" class="pub-card">
+            <div>
+                <div class="pub-title">The Restructuring of OpenAI</div>
+                <div class="pub-platform">Corporate Law Academy</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+    </div>
+
+    <!-- POLICY RESEARCH -->
+    <div class="topic-section">
+        <div class="topic-label">Policy Research</div>
+
+        <a href="https://iusatb.wixsite.com/online/post/nuclear-energy-in-italy" target="_blank" class="pub-card">
+            <div>
+                <div class="pub-title">Nuclear Energy in Italy</div>
+                <div class="pub-platform">Ius ATB</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <a href="https://iusatb.wixsite.com/online/post/referendums-around-the-world" target="_blank" class="pub-card">
+            <div>
+                <div class="pub-title">Referendums Around the World – A Comparative Overview</div>
+                <div class="pub-platform">Ius ATB</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <a href="https://voycecommunity.eu/our-work-1/f/progression-thanks-to-the-space-economy" target="_blank"
+            class="pub-card">
+            <div>
+                <div class="pub-title">Progression Thanks to Space Economy</div>
+                <div class="pub-platform">Voyce Community</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+    </div>
+
+    <!-- LAW & TECH -->
+    <div class="topic-section">
+        <div class="topic-label">Law & Tech</div>
+
+        <a href="https://www.lawtalktoday.co.uk/post/the-evolution-of-intellectual-property-in-italy" target="_blank"
+            class="pub-card">
+            <div>
+                <div class="pub-title">Intellectual Property in Italy and the EU</div>
+                <div class="pub-platform">Law Talk Today</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <a href="https://www.lawtalktoday.co.uk/post/monopoly-of-the-app-store-and-apple" target="_blank"
+            class="pub-card">
+            <div>
+                <div class="pub-title">Monopoly of App Store and Apple</div>
+                <div class="pub-platform">Law Talk Today</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <a href="https://voycecommunity.eu/our-work-1?blogcategory=Aerospace+%26+Defence" target="_blank"
+            class="pub-card">
+            <div>
+                <div class="pub-title">NewSpace Economy & Insurance Law in the EU</div>
+                <div class="pub-platform">Voyce Community</div>
+            </div>
+            <span class="pub-arrow">→</span>
+        </a>
+
+        <div class="pub-card coming-soon">
+            <div>
+                <div class="pub-title">Pharma Law – Holistic exploration of the field</div>
+                <div class="pub-platform">To be published</div>
+            </div>
+            <span class="coming-badge">Coming Soon</span>
+        </div>
+
+        <div class="pub-card coming-soon">
+            <div>
+                <div class="pub-title">Smart Contracts – A first glance</div>
+                <div class="pub-platform">To be republished</div>
+            </div>
+            <span class="coming-badge">Coming Soon</span>
+        </div>
+
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('.topic-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+
+        const searchBar = document.getElementById('searchBar');
+
+        searchBar.addEventListener('input', function () {
+            const query = this.value.toLowerCase();
+            const cards = document.querySelectorAll('.pub-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('.pub-title').textContent.toLowerCase();
+                const platform = card.querySelector('.pub-platform').textContent.toLowerCase();
+
+                if (title.includes(query) || platform.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            sections.forEach(section => {
+                const visibleCards = [...section.querySelectorAll('.pub-card')]
+                    .filter(card => card.style.display !== 'none');
+                section.style.display = visibleCards.length ? 'block' : 'none';
+            });
+        });
+    </script>
+
+</body>
+
+</html>

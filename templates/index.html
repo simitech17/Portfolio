@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="/publications">Publications</a>
+        <a href="/download/cv">Download CV ↓</a>
+        <a href="/download/portfolio">Portfolio ↓</a>
+    </nav>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="about-container">
+            <img src="{{ url_for('static', filename='photo.jpg') }}" alt="Simone Colavecchia" class="profile-photo">
+            <div class="about-text">
+                <p class="greeting">HELLO, I'M</p>
+                <h1>Simone Colavecchia</h1>
+                <p class="tagline">Law student · AI enthusiast · Finance & M&A</p>
+                <p>I'm an Italian law student with a deep passion for the intersection of technology, artificial
+                    intelligence, and finance. I love building things and exploring how AI is reshaping the legal and
+                    financial world.</p>
+                <div class="download-buttons">
+                    <a href="/download/cv" class="btn-download">Download CV ↓</a>
+                    <a href="/download/portfolio" class="btn-download secondary">Download Portfolio ↓</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+
+            <a href="https://appapppy-2ur5fdhlz3cxtggc6dpdgq.streamlit.app/" target="_blank"
+                class="glass-card project-card">
+                <div class="project-tag">Python · AI · Finance</div>
+                <h3>M&A News Digest</h3>
+                <p>A live web app that captures, weights and classifies M&A news based on issuer relevance and metadata.
+                    Self-coded in Streamlit.</p>
+                <span class="project-link">Visit site →</span>
+            </a>
+
+            <a href="https://1drv.ms/p/c/fbb7a321f189662c/IQDLchTC4Ur-QonMerYQFu7rAcR1fmelVqhJbJseFJn6Gmk"
+                target="_blank" class="glass-card project-card">
+                <div class="project-tag">Research · Tourism · Economics</div>
+                <h3>Island Resilience Study</h3>
+                <p>A research study on how island economies can become stress-resistant to tourism shortages, presented
+                    as a full strategic analysis.</p>
+                <span class="project-link">View presentation →</span>
+            </a>
+
+            <a href="https://file.notion.so/f/f/727d83cb-1827-438b-812f-0e878809e4e6/ca0b2b14-91d7-4f79-a8fe-5a497c643b80/International_Journal_of_Corporate_Law_-_Issue_1.pdf?table=block&id=30c3645b-e9df-8001-b08a-f1f5d0c50b72&spaceId=727d83cb-1827-438b-812f-0e878809e4e6&expirationTimestamp=1774850400000&signature=Zsz_W-0ZPCdzpU9_bSfzuXKARRwVce_ueg4G_DLrCMc&downloadName=International+Journal+of+Corporate+Law+-+Issue+1.pdf"
+                target="_blank" class="glass-card project-card">
+                <div class="project-tag">Law · Corporate · Publishing</div>
+                <h3>International Journal of Corporate Law</h3>
+                <p>Issue 1 of a curated digest of publications on corporate law that I edited and compiled last
+                    semester.</p>
+                <span class="project-link">Read journal →</span>
+            </a>
+
+        </div>
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Have a question or want to work together? Send me a message!</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash-message {{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <form class="glass-card contact-form" action="/contact" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Subject</label>
+                <input type="text" name="subject" placeholder="What's this about?" required>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" rows="6" placeholder="Your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn-download">Send Message →</button>
+        </form>
+    </section>
+    <script>
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+
+        sections.forEach(section => observer.observe(section));
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
