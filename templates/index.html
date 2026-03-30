@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -14,23 +15,29 @@
     <nav>
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
         <a href="/publications">Publications</a>
-        <a href="/download/cv">Download CV ↓</a>
-        <a href="/download/portfolio">Portfolio ↓</a>
+        <a href="#contact">Contact</a>
+        <a href="/download/cv" class="nav-cv">Download CV ↓</a>
     </nav>
 
     <!-- ABOUT -->
+    </section>
+    <div class="section-divider"></div>
     <section id="about">
         <div class="about-container">
             <img src="{{ url_for('static', filename='photo.jpg') }}" alt="Simone Colavecchia" class="profile-photo">
             <div class="about-text">
                 <p class="greeting">HELLO, I'M</p>
                 <h1>Simone Colavecchia</h1>
-                <p class="tagline">Law student · AI enthusiast · Finance & M&A</p>
+                <p class="tagline">Law Student · AI Enthusiast · Finance & M&A</p>
                 <p>I'm an Italian law student with a deep passion for the intersection of technology, artificial
                     intelligence, and finance. I love building things and exploring how AI is reshaping the legal and
                     financial world.</p>
+                <div class="interest-tags">
+                    <span class="tag purple"><i class="fas fa-scale-balanced"></i> Law</span>
+                    <span class="tag blue"><i class="fas fa-robot"></i> Artificial Intelligence</span>
+                    <span class="tag green"><i class="fas fa-chart-line"></i> Finance & M&A</span>
+                </div>
                 <div class="download-buttons">
                     <a href="/download/cv" class="btn-download">Download CV ↓</a>
                     <a href="/download/portfolio" class="btn-download secondary">Download Portfolio ↓</a>
@@ -39,7 +46,11 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- PROJECTS -->
+    </section>
+    <div class="section-divider"></div>
     <section id="projects">
         <h2>Projects</h2>
         <div class="projects-grid">
@@ -76,6 +87,8 @@
 
 
     <!-- CONTACT -->
+    </section>
+    <div class="section-divider"></div>
     <section id="contact">
         <h2>Contact Me</h2>
         <p>Have a question or want to work together? Send me a message!</p>
