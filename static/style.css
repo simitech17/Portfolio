@@ -344,3 +344,60 @@ p {
     border: 1px solid rgba(255, 80, 80, 0.3);
     color: #ff5050;
 }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+    nav {
+        padding: 14px 20px;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+
+    .nav-cv {
+        margin-left: 0 !important;
+    }
+
+    section {
+        padding: 60px 24px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .interest-tags {
+        justify-content: center;
+    }
+
+    .download-buttons {
+        justify-content: center;
+    }
+
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
