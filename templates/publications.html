@@ -7,32 +7,66 @@
     <title>Publications – Simone Colavecchia</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
+        body {
+            padding-left: 0;
+        }
+
         .pub-hero {
-            padding: 80px 40px 40px;
-            max-width: 900px;
+            max-width: 760px;
             margin: 0 auto;
+            padding: 80px 44px 30px;
         }
 
         .back-link {
             display: inline-block;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-secondary);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
+            font-family: var(--font-mono);
             margin-bottom: 30px;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
 
         .back-link:hover {
-            color: #fff;
+            color: var(--ink);
+        }
+
+        .pub-hero h1 {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.15;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            margin-top: 26px;
+            background: var(--paper-raised);
+            border: 1px solid var(--rule);
+            color: var(--ink);
+            font-family: var(--font-body);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--ink);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
         }
 
         .topic-section {
-            max-width: 900px;
+            max-width: 760px;
             margin: 0 auto;
-            padding: 20px 40px 60px;
+            padding: 20px 44px 50px;
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
         .topic-section.visible {
@@ -41,68 +75,76 @@
         }
 
         .topic-label {
+            font-family: var(--font-mono);
             font-size: 11px;
-            letter-spacing: 3px;
-            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.1em;
+            color: var(--gold);
             text-transform: uppercase;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 4px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--rule);
         }
 
         .pub-card {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 24px;
-            margin-bottom: 12px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+            gap: 20px;
+            padding: 18px 4px;
+            border-bottom: 1px solid var(--rule);
+            border-left: 2px solid transparent;
             text-decoration: none;
             color: inherit;
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition: background 0.2s ease, border-left-color 0.2s ease;
         }
 
         .pub-card:hover {
-            transform: translateX(8px);
-            background: rgba(255, 255, 255, 0.12);
+            background: var(--paper-raised);
+            border-left-color: var(--gold);
         }
 
         .pub-card.coming-soon {
-            opacity: 0.4;
+            opacity: 0.5;
             cursor: default;
             pointer-events: none;
         }
 
         .pub-title {
+            font-family: var(--font-display);
             font-size: 16px;
-            color: #fff;
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--ink);
         }
 
         .pub-platform {
+            font-family: var(--font-mono);
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.4);
+            color: var(--text-secondary);
             margin-top: 4px;
         }
 
         .pub-arrow {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.3);
-            transition: color 0.3s;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: color 0.2s, transform 0.2s;
+            flex-shrink: 0;
         }
 
         .pub-card:hover .pub-arrow {
-            color: #fff;
+            color: var(--signal);
+            transform: translateX(4px);
         }
 
         .coming-badge {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            border: 1px solid var(--rule);
             padding: 4px 10px;
-            border-radius: 20px;
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -110,37 +152,29 @@
 <body>
 
     <nav>
+        <span class="nav-mark">Colavecchia</span>
         <a href="/">Home</a>
         <a href="/#projects">Projects</a>
         <a href="/#contact">Contact</a>
-        <a href="#">Download CV</a>
+        <a href="/download/cv" class="nav-cv">Download CV ↓</a>
     </nav>
 
     <div class="pub-hero">
         <a href="/" class="back-link">← Back to portfolio</a>
-        <h1>Publications</h1>
+        <p class="eyebrow">Publications</p>
+        <h1>Writing &amp; research</h1>
         <p>A collection of my research and writing across law, finance and policy.</p>
-        <input type="text" id="searchBar" placeholder="Search publications..." style="
-    width: 100%;
-    padding: 14px 20px;
-    margin-top: 30px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 12px;
-    color: #fff;
-    font-size: 16px;
-    outline: none;
-">
+        <input type="text" id="searchBar" class="search-input" placeholder="Search publications…">
     </div>
 
     <!-- BUSINESS & FINANCE -->
     <div class="topic-section">
-        <div class="topic-label">Business & Finance</div>
+        <div class="topic-label">Business &amp; finance</div>
 
         <a href="https://www.corporatelawacademy.net/post/credit-linked-notes-a-look-at-structured-finance-tools"
             target="_blank" class="pub-card">
             <div>
-                <div class="pub-title">Credit-Linked Notes – A look at structured finance tools</div>
+                <div class="pub-title">Credit-linked notes — a look at structured finance tools</div>
                 <div class="pub-platform">Corporate Law Academy</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -148,7 +182,7 @@
 
         <a href="/article/buy-now-pay-later" class="pub-card">
             <div>
-                <div class="pub-title">The Rise of BNPL</div>
+                <div class="pub-title">The rise of BNPL</div>
                 <div class="pub-platform">Law Talk Today</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -157,7 +191,7 @@
         <a href="https://www.corporatelawacademy.net/post/the-market-s-reaction-to-trump-2-0" target="_blank"
             class="pub-card">
             <div>
-                <div class="pub-title">The Market Reaction to Trump 2.0</div>
+                <div class="pub-title">The market reaction to Trump 2.0</div>
                 <div class="pub-platform">Corporate Law Academy</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -166,7 +200,7 @@
         <a href="https://www.corporatelawacademy.net/post/the-ascend-of-colossal-biotech-cloning-and-de-extinction"
             target="_blank" class="pub-card">
             <div>
-                <div class="pub-title">The Ascend of Colossal Biotech</div>
+                <div class="pub-title">The ascend of Colossal Biotech</div>
                 <div class="pub-platform">Corporate Law Academy</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -175,7 +209,7 @@
         <a href="https://www.corporatelawacademy.net/post/polizze-w-i-e-gestione-del-rischio-nei-contratti-di-acquisizione-societaria-tra-normativa-e-prassi"
             target="_blank" class="pub-card">
             <div>
-                <div class="pub-title">Polizze W&I</div>
+                <div class="pub-title">Polizze W&amp;I</div>
                 <div class="pub-platform">Corporate Law Academy</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -183,14 +217,15 @@
 
         <a href="/article/predatory-lending" target="_blank" class="pub-card">
             <div>
-                <div class="pub-title">Predatory Lending – A danger to society</div>
+                <div class="pub-title">Predatory lending — a danger to society</div>
                 <div class="pub-platform">Law Talk Today</div>
             </div>
             <span class="pub-arrow">→</span>
         </a>
+
         <a href="/article/smart-contracts" target="_blank" class="pub-card">
             <div>
-                <div class="pub-title">Smart Contracts</div>
+                <div class="pub-title">Smart contracts</div>
                 <div class="pub-platform">Law Talk Today</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -199,7 +234,7 @@
         <a href="https://www.corporatelawacademy.net/post/from-vision-to-velocity-how-open-ai-transformed-its-mission"
             target="_blank" class="pub-card">
             <div>
-                <div class="pub-title">The Restructuring of OpenAI</div>
+                <div class="pub-title">The restructuring of OpenAI</div>
                 <div class="pub-platform">Corporate Law Academy</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -209,11 +244,11 @@
 
     <!-- POLICY RESEARCH -->
     <div class="topic-section">
-        <div class="topic-label">Policy Research</div>
+        <div class="topic-label">Policy research</div>
 
         <a href="https://iusatb.wixsite.com/online/post/nuclear-energy-in-italy" target="_blank" class="pub-card">
             <div>
-                <div class="pub-title">Nuclear Energy in Italy</div>
+                <div class="pub-title">Nuclear energy in Italy</div>
                 <div class="pub-platform">Ius ATB</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -221,7 +256,7 @@
 
         <a href="https://iusatb.wixsite.com/online/post/referendums-around-the-world" target="_blank" class="pub-card">
             <div>
-                <div class="pub-title">Referendums Around the World – A Comparative Overview</div>
+                <div class="pub-title">Referendums around the world — a comparative overview</div>
                 <div class="pub-platform">Ius ATB</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -230,7 +265,7 @@
         <a href="https://voycecommunity.eu/our-work-1/f/progression-thanks-to-the-space-economy" target="_blank"
             class="pub-card">
             <div>
-                <div class="pub-title">Progression Thanks to Space Economy</div>
+                <div class="pub-title">Progression thanks to space economy</div>
                 <div class="pub-platform">Voyce Community</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -240,11 +275,11 @@
 
     <!-- LAW & TECH -->
     <div class="topic-section">
-        <div class="topic-label">Law & Tech</div>
+        <div class="topic-label">Law &amp; tech</div>
 
         <a href="/article/intellectual-property" target="_blank" class="pub-card">
             <div>
-                <div class="pub-title">Intellectual Property in Italy and the EU</div>
+                <div class="pub-title">Intellectual property in Italy and the EU</div>
                 <div class="pub-platform">Law Talk Today</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -261,7 +296,7 @@
         <a href="https://voycecommunity.eu/our-work-1/f/insurance-constraints-in-the-space-sector?blogcategory=Aerospace+%26+Defence"
             target="_blank" class="pub-card">
             <div>
-                <div class="pub-title">NewSpace Economy & Insurance Law in the EU</div>
+                <div class="pub-title">NewSpace economy &amp; insurance law in the EU</div>
                 <div class="pub-platform">Voyce Community</div>
             </div>
             <span class="pub-arrow">→</span>
@@ -269,18 +304,18 @@
 
         <div class="pub-card coming-soon">
             <div>
-                <div class="pub-title">Pharma Law – Holistic exploration of the field</div>
+                <div class="pub-title">Pharma law — holistic exploration of the field</div>
                 <div class="pub-platform">To be published</div>
             </div>
-            <span class="coming-badge">Coming Soon</span>
+            <span class="coming-badge">Coming soon</span>
         </div>
 
         <div class="pub-card coming-soon">
             <div>
-                <div class="pub-title">Restructuring procedures – A look at the Italian and EU framework</div>
+                <div class="pub-title">Restructuring procedures — a look at the Italian and EU framework</div>
                 <div class="pub-platform">To be republished</div>
             </div>
-            <span class="coming-badge">Coming Soon</span>
+            <span class="coming-badge">Coming soon</span>
         </div>
 
     </div>

@@ -4,15 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Simone Colavecchia</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
+    <!-- MARGIN RAIL -->
+    <div class="margin-rail">
+        <span data-target="about" class="active">01</span>
+        <span data-target="projects">02</span>
+        <span data-target="contact">03</span>
+    </div>
+
     <!-- NAVIGATION -->
     <nav>
+        <span class="nav-mark">Colavecchia</span>
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="/publications">Publications</a>
@@ -21,26 +29,44 @@
     </nav>
 
     <!-- ABOUT -->
-    </section>
-    <div class="section-divider"></div>
     <section id="about">
-        <div class="about-container">
-            <img src="{{ url_for('static', filename='photo.jpg') }}" alt="Simone Colavecchia" class="profile-photo">
-            <div class="about-text">
-                <p class="greeting">HELLO, I'M</p>
-                <h1>Simone Colavecchia</h1>
-                <p class="tagline">Law Student · AI Enthusiast · Finance & M&A</p>
-                <p>I'm an Italian Global law student with a deep passion for the intersection of technology, artificial
-                    intelligence, and finance. I love building things and exploring how AI is reshaping the legal and
-                    financial world.</p>
+        <p class="eyebrow">About — 01</p>
+        <div class="hero-grid">
+            <div class="hero-photo">
+                <div class="photo-frame">
+                    <img src="{{ url_for('static', filename='photo.jpg') }}" alt="Simone Colavecchia"
+                        class="profile-photo">
+                </div>
+                <p class="photo-caption">Fig. 01 — S. Colavecchia</p>
+            </div>
+            <div class="hero-text">
+                <h1>Simone<br>Colavecchia</h1>
+                <p class="hero-subhead">Global Law · Bocconi University, Milano</p>
+                <p>I'm an Italian Global Law student with a deep interest in the intersection of technology,
+                    artificial intelligence, and finance. I like building things and exploring how AI is reshaping
+                    the legal and financial world.</p>
                 <div class="interest-tags">
-                    <span class="tag purple"><i class="fas fa-scale-balanced"></i> Law</span>
-                    <span class="tag blue"><i class="fas fa-robot"></i> Artificial Intelligence</span>
-                    <span class="tag green"><i class="fas fa-chart-line"></i> Finance & M&A</span>
+                    <span class="tag"><i class="fas fa-scale-balanced"></i> Law</span>
+                    <span class="tag"><i class="fas fa-robot"></i> Artificial intelligence</span>
+                    <span class="tag"><i class="fas fa-chart-line"></i> Finance &amp; M&amp;A</span>
+                </div>
+                <div class="credential-row">
+                    <div class="credential-item">
+                        <span class="credential-label">Program</span>
+                        <span class="credential-value">Global Law</span>
+                    </div>
+                    <div class="credential-item">
+                        <span class="credential-label">Role</span>
+                        <span class="credential-value">CLA — VP</span>
+                    </div>
+                    <div class="credential-item">
+                        <span class="credential-label">Internship</span>
+                        <span class="credential-value">Inly</span>
+                    </div>
                 </div>
                 <div class="download-buttons">
                     <a href="/download/cv" class="btn-download">Download CV ↓</a>
-                    <a href="/download/portfolio" class="btn-download secondary">Download Portfolio ↓</a>
+                    <a href="/download/portfolio" class="btn-download secondary">Download portfolio ↓</a>
                 </div>
             </div>
         </div>
@@ -49,49 +75,56 @@
     <div class="section-divider"></div>
 
     <!-- PROJECTS -->
-    </section>
-    <div class="section-divider"></div>
     <section id="projects">
+        <p class="eyebrow">Projects — 02</p>
         <h2>Projects</h2>
-        <div class="projects-grid">
+        <div class="docket-list">
 
-            <a href="https://appapppy-2ur5fdhlz3cxtggc6dpdgq.streamlit.app/" target="_blank"
-                class="glass-card project-card">
-                <div class="project-tag">Python · AI · Finance</div>
-                <h3>M&A News Digest</h3>
-                <p>A live web app that captures, weights and classifies M&A news based on issuer relevance and metadata.
-                    Self-coded in Streamlit.</p>
-                <span class="project-link">Visit site →</span>
+            <a href="https://appapppy-2ur5fdhlz3cxtggc6dpdgq.streamlit.app/" target="_blank" class="docket-row">
+                <span class="docket-index">A</span>
+                <div class="docket-body">
+                    <div class="project-tag">Python · AI · Finance</div>
+                    <h3>M&amp;A News Digest</h3>
+                    <p>A live web app that captures, weights and classifies M&amp;A news based on issuer relevance
+                        and metadata. Self-coded in Streamlit.</p>
+                </div>
+                <span class="docket-arrow">Visit site →</span>
             </a>
 
             <a href="https://1drv.ms/p/c/fbb7a321f189662c/IQDLchTC4Ur-QonMerYQFu7rAcR1fmelVqhJbJseFJn6Gmk"
-                target="_blank" class="glass-card project-card">
-                <div class="project-tag">Research · Tourism · Economics</div>
-                <h3>Capri Resilience Study</h3>
-                <p>A research study on how island economies can become stress-resistant to tourism shortages, presented
-                    as a full strategic analysis.</p>
-                <span class="project-link">View presentation →</span>
+                target="_blank" class="docket-row">
+                <span class="docket-index">B</span>
+                <div class="docket-body">
+                    <div class="project-tag">Research · Tourism · Economics</div>
+                    <h3>Capri Resilience Study</h3>
+                    <p>A research study on how island economies can become stress-resistant to tourism shortages,
+                        presented as a full strategic analysis.</p>
+                </div>
+                <span class="docket-arrow">View presentation →</span>
             </a>
 
             <a href="https://92389e2e-575b-402c-9471-627e9276a5c8.usrfiles.com/ugd/92389e_14f79e4d31a84af5947bdda1597e7a12.pdf"
-                target="_blank" class="glass-card project-card">
-                <div class="project-tag">Law · Corporate · Publishing</div>
-                <h3>International Journal of Corporate Law</h3>
-                <p>Issue 1 of a curated digest of publications on corporate law that I edited and compiled last
-                    semester.</p>
-                <span class="project-link">Read journal →</span>
+                target="_blank" class="docket-row">
+                <span class="docket-index">C</span>
+                <div class="docket-body">
+                    <div class="project-tag">Law · Corporate · Publishing</div>
+                    <h3>International Journal of Corporate Law</h3>
+                    <p>Issue 1 of a curated digest of publications on corporate law that I edited and compiled last
+                        semester.</p>
+                </div>
+                <span class="docket-arrow">Read journal →</span>
             </a>
 
         </div>
     </section>
 
+    <div class="section-divider"></div>
 
     <!-- CONTACT -->
-    </section>
-    <div class="section-divider"></div>
     <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Have a question or want to work together? Send me a message!</p>
+        <p class="eyebrow">Contact — 03</p>
+        <h2>Contact me</h2>
+        <p>Have a question or want to work together? Send me a message.</p>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -101,7 +134,7 @@
         {% endif %}
         {% endwith %}
 
-        <form class="glass-card contact-form" action="/contact" method="POST">
+        <form class="contact-form" action="/contact" method="POST">
             <div class="form-row">
                 <div class="form-group">
                     <label>Name</label>
@@ -120,19 +153,26 @@
                 <label>Message</label>
                 <textarea name="message" rows="6" placeholder="Your message..." required></textarea>
             </div>
-            <button type="submit" class="btn-download">Send Message →</button>
+            <button type="submit" class="btn-download">Send message →</button>
         </form>
     </section>
+
+    <footer>© 2026 Simone Colavecchia · Milano</footer>
+
     <script>
         const sections = document.querySelectorAll('section');
+        const railItems = document.querySelectorAll('.margin-rail span');
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    railItems.forEach(item => {
+                        item.classList.toggle('active', item.dataset.target === entry.target.id);
+                    });
                 }
             });
-        }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0.4 });
 
         sections.forEach(section => observer.observe(section));
 
@@ -146,3 +186,7 @@
             });
         });
     </script>
+
+</body>
+
+</html>
