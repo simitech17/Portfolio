@@ -2289,3 +2289,31 @@ footer {
     }
 
 }
+
+/* Paste this at the END of style.css to restore visible form fields */
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 16px;
+    background: #FAF9F6;
+    color: var(--text, #0E1822);
+    border: 1px solid var(--border, #C7C8C4);
+    border-radius: 0;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+    transition: border-color .2s ease, background .2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--text, #0E1822);
+    background: #FFFFFF;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
