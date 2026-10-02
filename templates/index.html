@@ -4,187 +4,451 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Simone Colavecchia — Global Law student at Bocconi University focused on corporate law, financial markets, artificial intelligence and emerging technologies.">
+
     <title>Simone Colavecchia</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
-    <!-- MARGIN RAIL -->
-    <div class="margin-rail">
-        <span data-target="about" class="active">01</span>
-        <span data-target="projects">02</span>
-        <span data-target="contact">03</span>
-    </div>
-
     <!-- NAVIGATION -->
     <nav>
-        <span class="nav-mark">Colavecchia</span>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="/publications">Publications</a>
-        <a href="#contact">Contact</a>
-        <a href="/download/cv" class="nav-cv">Download CV ↓</a>
+        <a href="#profile" class="nav-mark">
+            Simone Colavecchia
+        </a>
+
+        <div class="nav-links">
+            <a href="#profile">Profile</a>
+            <a href="#work">Selected Work</a>
+            <a href="/publications">Publications</a>
+            <a href="#contact">Contact</a>
+            <a href="/download/cv" class="nav-cv">CV ↓</a>
+        </div>
     </nav>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <p class="eyebrow">About — 01</p>
-        <div class="hero-grid">
-            <div class="hero-photo">
-                <div class="photo-frame">
-                    <img src="{{ url_for('static', filename='photo.jpg') }}" alt="Simone Colavecchia"
-                        class="profile-photo">
-                </div>
-                <p class="photo-caption">S. Colavecchia</p>
-            </div>
-            <div class="hero-text">
-                <h1>Simone<br>Colavecchia</h1>
-                <p class="hero-subhead">Global Law (Domestic Track) · Bocconi University, Milano</p>
-                <p>I'm an Italian Global Law student with a deep interest in the intersection of technology,
-                    artificial intelligence, and finance. I like building things and exploring how AI is reshaping
-                    the legal and financial world.</p>
-                <div class="interest-tags">
-                    <span class="tag"><i class="fas fa-scale-balanced"></i> Law</span>
-                    <span class="tag"><i class="fas fa-robot"></i> Artificial intelligence</span>
-                    <span class="tag"><i class="fas fa-chart-line"></i> Finance &amp; M&amp;A</span>
-                </div>
-                <div class="credential-row">
-                    <div class="credential-item">
-                        <span class="credential-label">Program</span>
-                        <span class="credential-value">Global Law</span>
-                    </div>
-                    <div class="credential-item">
-                        <span class="credential-label">Role</span>
-                        <span class="credential-value">CLA — Vice President</span>
-                    </div>
-                    <div class="credential-item">
-                        <span class="credential-label">Internship</span>
-                        <span class="credential-value">Inly</span>
+
+    <main>
+
+        <!-- PROFILE -->
+        <section id="profile" class="hero-section">
+
+            <div class="hero-grid">
+
+                <div class="hero-photo">
+                    <div class="photo-frame">
+                        <img src="{{ url_for('static', filename='photo.jpg') }}" alt="Portrait of Simone Colavecchia"
+                            class="profile-photo">
                     </div>
                 </div>
-                <div class="download-buttons">
-                    <a href="/download/cv" class="btn-download">Download CV ↓</a>
-                    <a href="/download/portfolio" class="btn-download secondary">Download portfolio ↓</a>
+
+                <div class="hero-text">
+
+                    <p class="eyebrow">
+                        Bocconi University · Milano
+                    </p>
+
+                    <h1>
+                        Simone<br>
+                        Colavecchia
+                    </h1>
+
+                    <p class="hero-subhead">
+                        Global Law
+                    </p>
+
+                    <p class="hero-intro">
+                        I study the intersection of corporate law, financial
+                        markets and emerging technologies, with a particular
+                        interest in how artificial intelligence is reshaping
+                        legal practice, transactions and financial decision-making.
+                    </p>
+
+
+                    <div class="focus-line">
+                        <span>Corporate Law</span>
+                        <span>Financial Markets</span>
+                        <span>Artificial Intelligence</span>
+                    </div>
+
+
+                    <div class="credential-row">
+
+                        <div class="credential-item">
+                            <span class="credential-label">Education</span>
+                            <span class="credential-value">
+                                Bocconi University
+                            </span>
+                            <span class="credential-detail">
+                                Global Law
+                            </span>
+                        </div>
+
+                        <div class="credential-item">
+                            <span class="credential-label">Leadership</span>
+                            <span class="credential-value">
+                                Corporate Law Academy
+                            </span>
+                            <span class="credential-detail">
+                                Vice President
+                            </span>
+                        </div>
+
+                        <div class="credential-item">
+                            <span class="credential-label">Experience</span>
+                            <span class="credential-value">
+                                Inly
+                            </span>
+                            <span class="credential-detail">
+                                Internship
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="hero-actions">
+
+                        <a href="/download/cv" class="text-link">
+                            Curriculum Vitae ↓
+                        </a>
+
+                        <a href="/publications" class="text-link secondary">
+                            View publications →
+                        </a>
+
+                    </div>
+
                 </div>
+
             </div>
-        </div>
-    </section>
 
-    <div class="section-divider"></div>
+        </section>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-        <p class="eyebrow">Projects — 02</p>
-        <h2>Projects</h2>
-        <div class="docket-list">
 
-            <a href="https://appapppy-2ur5fdhlz3cxtggc6dpdgq.streamlit.app/" target="_blank" class="docket-row">
-                <span class="docket-index">A</span>
-                <div class="docket-body">
-                    <div class="project-tag">Python · AI · Finance</div>
-                    <h3>M&amp;A News Digest</h3>
-                    <p>A live web app that captures, weights and classifies M&amp;A news based on issuer relevance
-                        and metadata. Self-coded in Streamlit.</p>
-                </div>
-                <span class="docket-arrow">Visit site →</span>
-            </a>
+        <div class="section-divider"></div>
 
-            <a href="https://1drv.ms/p/c/fbb7a321f189662c/IQDLchTC4Ur-QonMerYQFu7rAcR1fmelVqhJbJseFJn6Gmk"
-                target="_blank" class="docket-row">
-                <span class="docket-index">B</span>
-                <div class="docket-body">
-                    <div class="project-tag">Research · Tourism · Economics</div>
-                    <h3>Capri Resilience Study</h3>
-                    <p>A research study on how island economies can become stress-resistant to tourism shortages,
-                        presented as a full strategic analysis.</p>
-                </div>
-                <span class="docket-arrow">View presentation →</span>
-            </a>
 
-            <a href="https://www.corporatelawacademy.net" target="_blank" class="docket-row">
-                <span class="docket-index">C</span>
-                <div class="docket-body">
-                    <div class="project-tag">Law · Corporate · Publishing</div>
-                    <h3>Corporate Law Academy</h3>
-                    <p>A boutique Bocconi student association fostering a global network of partnerships and delivering
-                        high-level conferences that bring together students, industry leaders, academics, and
-                        distinguished professionals.</p>
-                </div>
-                <span class="docket-arrow"> See the Website →</span>
-            </a>
+        <!-- SELECTED WORK -->
+        <section id="work">
 
-        </div>
-    </section>
+            <div class="section-heading">
 
-    <div class="section-divider"></div>
+                <p class="eyebrow">
+                    Selected Work
+                </p>
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <p class="eyebrow">Contact — 03</p>
-        <h2>Contact me</h2>
-        <p>Have a question or want to work together? Send me a message.</p>
+                <h2>
+                    Research, initiatives<br>
+                    &amp; independent projects
+                </h2>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="flash-message {{ category }}">{{ message }}</div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
+                <p class="section-intro">
+                    A selection of work across law, finance, technology and
+                    applied research.
+                </p>
 
-        <form class="contact-form" action="/contact" method="POST">
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" name="name" placeholder="Your name" required>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="your@email.com" required>
-                </div>
             </div>
-            <div class="form-group">
-                <label>Subject</label>
-                <input type="text" name="subject" placeholder="What's this about?" required>
-            </div>
-            <div class="form-group">
-                <label>Message</label>
-                <textarea name="message" rows="6" placeholder="Your message..." required></textarea>
-            </div>
-            <button type="submit" class="btn-download">Send message →</button>
-        </form>
-    </section>
 
-    <footer>© 2026 Simone Colavecchia · Milano</footer>
 
+            <div class="work-list">
+
+                <!-- M&A NEWS DIGEST -->
+                <a href="https://appapppy-2ur5fdhlz3cxtggc6dpdgq.streamlit.app/" target="_blank"
+                    rel="noopener noreferrer" class="work-row">
+
+                    <div class="work-meta">
+                        <span>Technology</span>
+                        <span>Finance</span>
+                    </div>
+
+                    <div class="work-content">
+
+                        <h3>
+                            M&amp;A News Digest
+                        </h3>
+
+                        <p>
+                            A live application that captures, weights and
+                            classifies M&amp;A news according to issuer
+                            relevance and underlying metadata. Designed and
+                            developed independently in Python and Streamlit.
+                        </p>
+
+                    </div>
+
+                    <span class="work-arrow">
+                        ↗
+                    </span>
+
+                </a>
+
+
+                <!-- CAPRI STUDY -->
+                <a href="https://1drv.ms/p/c/fbb7a321f189662c/IQDLchTC4Ur-QonMerYQFu7rAcR1fmelVqhJbJseFJn6Gmk"
+                    target="_blank" rel="noopener noreferrer" class="work-row">
+
+                    <div class="work-meta">
+                        <span>Research</span>
+                        <span>Economics</span>
+                    </div>
+
+                    <div class="work-content">
+
+                        <h3>
+                            Capri Resilience Study
+                        </h3>
+
+                        <p>
+                            A strategic research project examining how
+                            tourism-dependent island economies can strengthen
+                            their resilience to demand shocks and structural
+                            vulnerabilities.
+                        </p>
+
+                    </div>
+
+                    <span class="work-arrow">
+                        ↗
+                    </span>
+
+                </a>
+
+
+                <!-- CORPORATE LAW ACADEMY -->
+                <a href="https://www.corporatelawacademy.net" target="_blank" rel="noopener noreferrer"
+                    class="work-row">
+
+                    <div class="work-meta">
+                        <span>Corporate Law</span>
+                        <span>Leadership</span>
+                    </div>
+
+                    <div class="work-content">
+
+                        <h3>
+                            Corporate Law Academy
+                        </h3>
+
+                        <p>
+                            A boutique Bocconi student association developing
+                            international partnerships and high-level
+                            conferences connecting students with leading
+                            professionals, academics and institutions.
+                        </p>
+
+                    </div>
+
+                    <span class="work-arrow">
+                        ↗
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <div class="section-divider"></div>
+
+
+        <!-- PUBLICATIONS PREVIEW -->
+        <section id="publications-preview">
+
+            <div class="publications-callout">
+
+                <div>
+                    <p class="eyebrow">
+                        Publications
+                    </p>
+
+                    <h2>
+                        Writing &amp; research
+                    </h2>
+                </div>
+
+                <div class="publications-copy">
+
+                    <p>
+                        Articles and research on corporate law, financial
+                        markets, technology and the evolving relationship
+                        between regulation and business.
+                    </p>
+
+                    <a href="/publications" class="text-link">
+                        View all publications →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="section-divider"></div>
+
+
+        <!-- CONTACT -->
+        <section id="contact">
+
+            <div class="contact-layout">
+
+                <div class="contact-heading">
+
+                    <p class="eyebrow">
+                        Contact
+                    </p>
+
+                    <h2>
+                        Get in touch
+                    </h2>
+
+                    <p>
+                        For professional, academic or research enquiries.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-content">
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+
+                    <form class="contact-form" action="/contact" method="POST">
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input id="name" type="text" name="name" autocomplete="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" name="email" autocomplete="email" required>
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="subject">
+                                Subject
+                            </label>
+
+                            <input id="subject" type="text" name="subject" required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="message">
+                                Message
+                            </label>
+
+                            <textarea id="message" name="message" rows="6" required></textarea>
+
+                        </div>
+
+
+                        <button type="submit" class="form-submit">
+                            Send message →
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <span>
+            © 2026 Simone Colavecchia
+        </span>
+
+        <span>
+            Milano, Italy
+        </span>
+
+    </footer>
+
+
+    <!-- SECTION REVEAL -->
     <script>
+
         const sections = document.querySelectorAll('section');
-        const railItems = document.querySelectorAll('.margin-rail span');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    railItems.forEach(item => {
-                        item.classList.toggle('active', item.dataset.target === entry.target.id);
-                    });
-                }
-            });
-        }, { threshold: 0.4 });
+        const observer = new IntersectionObserver(
+            (entries) => {
 
-        sections.forEach(section => observer.observe(section));
+                entries.forEach(entry => {
 
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('visible');
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+        sections.forEach(section => {
+            observer.observe(section);
         });
+
+
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+            link.addEventListener('click', function (event) {
+
+                const target = document.querySelector(
+                    this.getAttribute('href')
+                );
+
+                if (target) {
+
+                    event.preventDefault();
+
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
+                }
+
+            });
+
+        });
+
     </script>
 
 </body>

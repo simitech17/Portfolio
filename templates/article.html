@@ -4,120 +4,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ post.title }} – Simone Colavecchia</title>
+
+    <meta name="description" content="{{ post.title }} — article by Simone Colavecchia">
+
+    <title>{{ post.title }} — Simone Colavecchia</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        body {
-            padding-left: 0;
-        }
-
-        .article-hero {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 80px 44px 30px;
-        }
-
-        .back-link {
-            display: inline-block;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 13px;
-            font-family: var(--font-mono);
-            margin-bottom: 30px;
-            transition: color 0.2s;
-        }
-
-        .back-link:hover {
-            color: var(--ink);
-        }
-
-        .article-topic {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            color: var(--gold);
-            margin-bottom: 16px;
-            text-transform: uppercase;
-        }
-
-        .article-hero h1 {
-            font-family: var(--font-display);
-            font-size: 38px;
-            font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 0;
-        }
-
-        .article-divider {
-            height: 1px;
-            background: var(--rule);
-            margin-top: 30px;
-        }
-
-        .article-body {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 20px 44px 100px;
-        }
-
-        .article-body p {
-            font-family: var(--font-body);
-            font-size: 17px;
-            line-height: 1.85;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
-
-        .article-body h2 {
-            font-family: var(--font-display);
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--ink);
-            margin: 40px 0 16px;
-        }
-
-        .article-body a {
-            color: var(--ink);
-            border-bottom: 1px solid var(--gold);
-            text-decoration: none;
-        }
-
-        .article-body a:hover {
-            color: var(--gold);
-        }
-
-        .article-body blockquote {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-size: 20px;
-            color: var(--ink);
-            border-left: 2px solid var(--gold);
-            padding-left: 20px;
-            margin: 32px 0;
-        }
-    </style>
 </head>
 
-<body>
+<body class="article-page">
 
+    <!-- NAVIGATION -->
     <nav>
-        <span class="nav-mark">Colavecchia</span>
-        <a href="/">Home</a>
-        <a href="/publications">Publications</a>
-        <a href="/#contact">Contact</a>
-        <a href="/download/cv" class="nav-cv">Download CV ↓</a>
+        <a href="/" class="nav-mark">
+            Simone Colavecchia
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Profile</a>
+            <a href="/#work">Selected Work</a>
+            <a href="/publications">Publications</a>
+            <a href="/#contact">Contact</a>
+            <a href="/download/cv" class="nav-cv">CV ↓</a>
+        </div>
     </nav>
 
-    <div class="article-hero">
-        <a href="/publications" class="back-link">← Back to publications</a>
-        <p class="article-topic">{{ post.topic }}</p>
-        <h1>{{ post.title }}</h1>
-        <div class="article-divider"></div>
-    </div>
 
-    <div class="article-body">
-        {{ post.content | safe }}
-    </div>
+    <main class="article-main">
+
+        <!-- ARTICLE HEADER -->
+        <header class="article-header">
+
+            <a href="/publications" class="article-back">
+                ← Publications
+            </a>
+
+            <div class="article-heading">
+
+                <p class="article-topic">
+                    {{ post.topic }}
+                </p>
+
+                <h1 class="article-title">
+                    {{ post.title }}
+                </h1>
+
+                {% if post.date %}
+                <p class="article-meta">
+                    {{ post.date }}
+                </p>
+                {% endif %}
+
+            </div>
+
+        </header>
+
+
+        <div class="article-rule"></div>
+
+
+        <!-- ARTICLE -->
+        <article class="article-body">
+            {{ post.content | safe }}
+        </article>
+
+
+        <!-- ARTICLE FOOTER -->
+        <div class="article-footer">
+
+            <a href="/publications" class="text-link">
+                ← Back to publications
+            </a>
+
+            <a href="/" class="text-link secondary">
+                Simone Colavecchia
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <span>
+            © 2026 Simone Colavecchia
+        </span>
+
+        <span>
+            Milano, Italy
+        </span>
+
+    </footer>
 
 </body>
 
