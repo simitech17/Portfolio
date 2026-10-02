@@ -4,147 +4,656 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publications – Simone Colavecchia</title>
+    <meta name="description"
+        content="Research and writing by Simone Colavecchia across corporate law, finance, technology and policy.">
+    <title>Publications — Simone Colavecchia</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
     <style>
+        /* =========================================================
+           PUBLICATIONS PAGE — SELF-CONTAINED PAGE STYLES
+        ========================================================= */
+
+        :root {
+            --pub-bg: #F5F4F0;
+            --pub-surface: #FBFAF7;
+            --pub-ink: #0E1822;
+            --pub-ink-soft: #303A42;
+            --pub-muted: #6A7177;
+            --pub-line: #C8CAC7;
+            --pub-line-soft: #DDDEDA;
+            --pub-accent: #6E2730;
+            --pub-accent-dark: #4F1820;
+            --pub-max: 1220px;
+        }
+
         body {
+            background: var(--pub-bg);
+            color: var(--pub-ink);
             padding-left: 0;
         }
 
-        .pub-hero {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 80px 44px 30px;
-        }
-
-        .back-link {
-            display: inline-block;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 13px;
-            font-family: var(--font-mono);
-            margin-bottom: 30px;
-            transition: color 0.2s;
-        }
-
-        .back-link:hover {
-            color: var(--ink);
-        }
-
-        .pub-hero h1 {
-            font-family: var(--font-display);
-            font-size: 40px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            line-height: 1.15;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 16px;
-            margin-top: 26px;
-            background: var(--paper-raised);
-            border: 1px solid var(--rule);
-            color: var(--ink);
-            font-family: var(--font-body);
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .search-input:focus {
-            border-color: var(--ink);
-        }
-
-        .search-input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .topic-section {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 20px 44px 50px;
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .topic-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .topic-label {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 4px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--rule);
-        }
-
-        .pub-card {
+        /* Keep the publications page visually consistent even if the
+           base stylesheet still contains older navigation rules. */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
-            padding: 18px 4px;
-            border-bottom: 1px solid var(--rule);
-            border-left: 2px solid transparent;
+            width: 100%;
+            padding: 27px max(42px, calc((100vw - var(--pub-max)) / 2));
+            background: rgba(245, 244, 240, 0.96);
+            border-bottom: 1px solid var(--pub-line);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .nav-mark {
+            flex-shrink: 0;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: .11em;
+            text-transform: uppercase;
             text-decoration: none;
-            color: inherit;
-            transition: background 0.2s ease, border-left-color 0.2s ease;
+            color: var(--pub-ink);
         }
 
-        .pub-card:hover {
-            background: var(--paper-raised);
-            border-left-color: var(--gold);
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
         }
 
-        .pub-card.coming-soon {
-            opacity: 0.5;
-            cursor: default;
-            pointer-events: none;
+        nav a {
+            position: relative;
+            color: var(--pub-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color .22s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--pub-ink);
+        }
+
+        .nav-links>a:not(.nav-cv)::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 100%;
+            height: 1px;
+            background: var(--pub-ink);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform .24s ease;
+        }
+
+        .nav-links>a:not(.nav-cv):hover::after,
+        .nav-links>a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-cv {
+            padding-bottom: 4px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--pub-ink) !important;
+            border-bottom: 1px solid var(--pub-ink);
+        }
+
+        .publications-page {
+            width: 100%;
+        }
+
+        .pub-shell {
+            width: min(calc(100% - 80px), var(--pub-max));
+            margin: 0 auto;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .pub-hero {
+            padding: 118px 0 92px;
+        }
+
+        .pub-kicker {
+            margin-bottom: 30px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--pub-accent);
+        }
+
+        .pub-hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+            gap: 100px;
+            align-items: end;
         }
 
         .pub-title {
+            margin: 0;
             font-family: var(--font-display);
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--ink);
+            font-size: clamp(68px, 8vw, 106px);
+            font-weight: 400;
+            line-height: .94;
+            letter-spacing: -.05em;
+            color: var(--pub-ink);
+        }
+
+        .pub-intro {
+            max-width: 440px;
+        }
+
+        .pub-intro p {
+            margin: 0;
+            font-size: 19px;
+            line-height: 1.72;
+            color: var(--pub-ink-soft);
+        }
+
+        .pub-count {
+            margin-top: 38px;
+            padding-top: 22px;
+            border-top: 1px solid var(--pub-line);
+        }
+
+        .pub-count strong {
+            display: block;
+            margin-bottom: 4px;
+            font-family: var(--font-display);
+            font-size: 34px;
+            font-weight: 400;
+            color: var(--pub-ink);
+        }
+
+        .pub-count span {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            color: var(--pub-muted);
+        }
+
+        .pub-divider {
+            height: 1px;
+            background: var(--pub-line);
+        }
+
+        /* =========================
+           TOOLBAR
+        ========================= */
+
+        .pub-toolbar {
+            padding: 56px 0 48px;
+        }
+
+        .pub-search-label {
+            display: block;
+            margin-bottom: 12px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--pub-muted);
+        }
+
+        .pub-search {
+            width: 100%;
+            padding: 15px 0 16px;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid var(--pub-line);
+            outline: none;
+            font-family: var(--font-body);
+            font-size: 18px;
+            color: var(--pub-ink);
+            transition: border-color .22s ease;
+        }
+
+        .pub-search::placeholder {
+            color: #94999D;
+        }
+
+        .pub-search:focus {
+            border-bottom-color: var(--pub-ink);
+        }
+
+        .pub-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px 28px;
+            margin-top: 30px;
+        }
+
+        .pub-filter {
+            padding: 0 0 5px;
+            background: transparent;
+            border: 0;
+            border-bottom: 1px solid transparent;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--pub-muted);
+            cursor: pointer;
+            transition: color .2s ease, border-color .2s ease;
+        }
+
+        .pub-filter:hover {
+            color: var(--pub-ink);
+        }
+
+        .pub-filter.active {
+            color: var(--pub-accent);
+            border-bottom-color: var(--pub-accent);
+        }
+
+        /* =========================
+           FEATURED
+        ========================= */
+
+        .featured-wrap {
+            padding: 18px 0 68px;
+        }
+
+        .featured-label {
+            margin-bottom: 16px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--pub-muted);
+        }
+
+        .featured-card {
+            display: grid;
+            grid-template-columns: 160px minmax(0, 1fr) 34px;
+            gap: 44px;
+            align-items: start;
+            padding: 42px 0;
+            border-top: 1px solid var(--pub-ink);
+            border-bottom: 1px solid var(--pub-line);
+            color: inherit;
+            text-decoration: none;
+            transition: padding-left .24s ease;
+        }
+
+        .featured-card:hover {
+            padding-left: 10px;
+        }
+
+        .featured-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            padding-top: 6px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--pub-accent);
+        }
+
+        .featured-card h2 {
+            margin: 0 0 10px;
+            font-family: var(--font-display);
+            font-size: clamp(34px, 4vw, 48px);
+            font-weight: 400;
+            line-height: 1.08;
+            letter-spacing: -.03em;
+            color: var(--pub-ink);
+            transition: color .22s ease;
+        }
+
+        .featured-card p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--pub-muted);
+        }
+
+        .featured-arrow,
+        .pub-arrow {
+            color: var(--pub-muted);
+            transition: color .22s ease, transform .22s ease;
+        }
+
+        .featured-arrow {
+            padding-top: 5px;
+            font-size: 20px;
+        }
+
+        .featured-card:hover h2,
+        .featured-card:hover .featured-arrow {
+            color: var(--pub-accent);
+        }
+
+        .featured-card:hover .featured-arrow {
+            transform: translate(4px, -4px);
+        }
+
+        /* =========================
+           ARCHIVE
+        ========================= */
+
+        .archive-wrap {
+            padding-bottom: 135px;
+        }
+
+        .archive-heading {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 24px;
+        }
+
+        .archive-heading h2 {
+            margin: 0;
+            font-family: var(--font-display);
+            font-size: 43px;
+            font-weight: 400;
+            letter-spacing: -.03em;
+            color: var(--pub-ink);
+        }
+
+        .archive-heading span {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--pub-muted);
+        }
+
+        .archive-list {
+            border-top: 1px solid var(--pub-line);
+        }
+
+        .pub-row {
+            display: grid;
+            grid-template-columns: 62px 160px minmax(0, 1fr) 28px;
+            gap: 30px;
+            align-items: start;
+            padding: 36px 0;
+            border-bottom: 1px solid var(--pub-line-soft);
+            color: inherit;
+            text-decoration: none;
+            transition: padding-left .24s ease, opacity .2s ease;
+        }
+
+        .pub-row:hover {
+            padding-left: 10px;
+        }
+
+        .pub-row.coming-soon {
+            opacity: .46;
+            pointer-events: none;
+        }
+
+        .pub-index {
+            padding-top: 5px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--pub-muted);
+        }
+
+        .pub-category {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-top: 5px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--pub-accent);
+        }
+
+        .pub-main h3 {
+            margin: 0 0 8px;
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 400;
+            line-height: 1.16;
+            letter-spacing: -.02em;
+            color: var(--pub-ink);
+            transition: color .22s ease;
         }
 
         .pub-platform {
             font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--text-secondary);
-            margin-top: 4px;
+            font-size: 11px;
+            letter-spacing: .02em;
+            color: var(--pub-muted);
         }
 
         .pub-arrow {
-            font-family: var(--font-mono);
-            font-size: 14px;
-            color: var(--text-secondary);
-            transition: color 0.2s, transform 0.2s;
-            flex-shrink: 0;
+            padding-top: 5px;
+            font-size: 17px;
         }
 
-        .pub-card:hover .pub-arrow {
-            color: var(--signal);
-            transform: translateX(4px);
+        .pub-row:hover .pub-main h3,
+        .pub-row:hover .pub-arrow {
+            color: var(--pub-accent);
+        }
+
+        .pub-row:hover .pub-arrow {
+            transform: translate(4px, -4px);
         }
 
         .coming-badge {
+            display: inline-block;
+            margin-top: 9px;
+            padding-bottom: 3px;
+            border-bottom: 1px solid var(--pub-line);
+            font-family: var(--font-mono);
+            font-size: 9px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--pub-muted);
+        }
+
+        .pub-empty {
+            display: none;
+            padding: 44px 0;
+            border-bottom: 1px solid var(--pub-line);
+            font-size: 16px;
+            color: var(--pub-muted);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .pub-footer {
+            width: min(calc(100% - 80px), var(--pub-max));
+            margin: 0 auto;
+            padding: 36px 0 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--pub-line);
             font-family: var(--font-mono);
             font-size: 10px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            border: 1px solid var(--rule);
-            padding: 4px 10px;
-            flex-shrink: 0;
+            letter-spacing: .04em;
+            color: var(--pub-muted);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 820px) {
+            nav {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
+
+            .pub-shell,
+            .pub-footer {
+                width: calc(100% - 44px);
+            }
+
+            .pub-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 44px;
+            }
+
+            .featured-card {
+                grid-template-columns: 120px minmax(0, 1fr) 26px;
+                gap: 26px;
+            }
+
+            .pub-row {
+                grid-template-columns: 48px 130px minmax(0, 1fr) 24px;
+                gap: 22px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            nav {
+                position: relative;
+                align-items: flex-start;
+                gap: 24px;
+                padding: 21px 20px;
+            }
+
+            .nav-mark {
+                max-width: 110px;
+                padding-top: 2px;
+                font-size: 11px;
+                line-height: 1.45;
+            }
+
+            .nav-links {
+                max-width: 240px;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: 11px 15px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+            }
+
+            .nav-links a:nth-child(2) {
+                display: none;
+            }
+
+            .pub-hero {
+                padding: 76px 0 66px;
+            }
+
+            .pub-title {
+                font-size: clamp(58px, 17vw, 78px);
+            }
+
+            .pub-intro p {
+                font-size: 17px;
+            }
+
+            .pub-toolbar {
+                padding: 44px 0 38px;
+            }
+
+            .pub-search {
+                font-size: 16px;
+            }
+
+            .featured-wrap {
+                padding-bottom: 54px;
+            }
+
+            .featured-card {
+                grid-template-columns: 1fr 24px;
+                gap: 16px;
+                padding: 31px 0;
+            }
+
+            .featured-meta {
+                grid-column: 1 / -1;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .featured-card h2 {
+                font-size: 31px;
+            }
+
+            .featured-arrow {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .archive-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 9px;
+            }
+
+            .archive-heading h2 {
+                font-size: 36px;
+            }
+
+            .pub-row {
+                grid-template-columns: 34px minmax(0, 1fr) 20px;
+                gap: 15px;
+                padding: 30px 0;
+            }
+
+            .pub-category {
+                grid-column: 2 / -1;
+                grid-row: 1;
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding-top: 0;
+            }
+
+            .pub-index {
+                grid-column: 1;
+                grid-row: 1 / 3;
+            }
+
+            .pub-main {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .pub-main h3 {
+                font-size: 25px;
+            }
+
+            .pub-arrow {
+                grid-column: 3;
+                grid-row: 2;
+            }
+
+            .pub-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
         }
     </style>
 </head>
@@ -152,214 +661,340 @@
 <body>
 
     <nav>
-        <span class="nav-mark">Colavecchia</span>
-        <a href="/">Home</a>
-        <a href="/#projects">Projects</a>
-        <a href="/#contact">Contact</a>
-        <a href="/download/cv" class="nav-cv">Download CV ↓</a>
+        <a href="/" class="nav-mark">Simone Colavecchia</a>
+
+        <div class="nav-links">
+            <a href="/#profile">Profile</a>
+            <a href="/#work">Selected Work</a>
+            <a href="/publications" class="active">Publications</a>
+            <a href="/#contact">Contact</a>
+            <a href="/download/cv" class="nav-cv">CV ↓</a>
+        </div>
     </nav>
 
-    <div class="pub-hero">
-        <a href="/" class="back-link">← Back to portfolio</a>
-        <p class="eyebrow">Publications</p>
-        <h1>Writing &amp; research</h1>
-        <p>A collection of my research and writing across law, finance and policy.</p>
-        <input type="text" id="searchBar" class="search-input" placeholder="Search publications…">
-    </div>
+    <main class="publications-page">
 
-    <!-- BUSINESS & FINANCE -->
-    <div class="topic-section">
-        <div class="topic-label">Business &amp; finance</div>
+        <div class="pub-shell">
 
-        <a href="https://www.corporatelawacademy.net/our-work/articles/preventive-restructuring-under-directive-eu-2019-1023"
-            target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">Preventive Restructuring</div>
-                <div class="pub-platform">Corporate Law Academy</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
-        <a href="https://www.corporatelawacademy.net/our-work/articles/openai-restructuring" target="_blank"
-            class="pub-card">
-            <div>
-                <div class="pub-title">The restructuring of OpenAI</div>
-                <div class="pub-platform">Corporate Law Academy</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+            <header class="pub-hero">
+                <div class="pub-kicker">Publications</div>
 
-        <a href="https://www.corporatelawacademy.net/post/credit-linked-notes-a-look-at-structured-finance-tools"
-            target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">Credit-linked notes — a look at structured finance tools</div>
-                <div class="pub-platform">Corporate Law Academy</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+                <div class="pub-hero-grid">
+                    <div>
+                        <h1 class="pub-title">Writing<br>&amp; research</h1>
+                    </div>
 
-        <a href="/article/buy-now-pay-later" class="pub-card">
-            <div>
-                <div class="pub-title">The rise of BNPL</div>
-                <div class="pub-platform">Law Talk Today</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+                    <div class="pub-intro">
+                        <p>
+                            Selected writing across corporate law, finance,
+                            technology and policy.
+                        </p>
 
-        <a href="https://www.corporatelawacademy.net/post/the-market-s-reaction-to-trump-2-0" target="_blank"
-            class="pub-card">
-            <div>
-                <div class="pub-title">The market reaction to Trump 2.0</div>
-                <div class="pub-platform">Corporate Law Academy</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+                        <div class="pub-count">
+                            <strong>15</strong>
+                            <span>Published pieces</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-        <a href="https://www.corporatelawacademy.net/post/the-ascend-of-colossal-biotech-cloning-and-de-extinction"
-            target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">The ascend of Colossal Biotech</div>
-                <div class="pub-platform">Corporate Law Academy</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+            <div class="pub-divider"></div>
 
-        <a href="https://www.corporatelawacademy.net/post/polizze-w-i-e-gestione-del-rischio-nei-contratti-di-acquisizione-societaria-tra-normativa-e-prassi"
-            target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">Polizze W&amp;I</div>
-                <div class="pub-platform">Corporate Law Academy</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+            <section class="pub-toolbar">
+                <label for="searchBar" class="pub-search-label">Search the archive</label>
+                <input type="text" id="searchBar" class="pub-search" placeholder="Search by title or publication..."
+                    autocomplete="off">
 
-        <a href="/article/predatory-lending" target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">Predatory lending — a danger to society</div>
-                <div class="pub-platform">Law Talk Today</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+                <div class="pub-filters" aria-label="Publication filters">
+                    <button class="pub-filter active" type="button" data-filter="all">All</button>
+                    <button class="pub-filter" type="button" data-filter="business-finance">Business &amp;
+                        Finance</button>
+                    <button class="pub-filter" type="button" data-filter="policy">Policy Research</button>
+                    <button class="pub-filter" type="button" data-filter="law-tech">Law &amp; Tech</button>
+                </div>
+            </section>
 
-        <a href="/article/smart-contracts" target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">Smart contracts</div>
-                <div class="pub-platform">Law Talk Today</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+            <section class="featured-wrap publication-item" data-category="business-finance"
+                data-search="preventive restructuring corporate law academy business finance">
+                <div class="featured-label">Featured</div>
 
-    </div>
+                <a href="https://www.corporatelawacademy.net/our-work/articles/preventive-restructuring-under-directive-eu-2019-1023"
+                    target="_blank" rel="noopener noreferrer" class="featured-card">
+                    <div class="featured-meta">
+                        <span>Business &amp; Finance</span>
+                        <span>Corporate Law Academy</span>
+                    </div>
 
-    <!-- POLICY RESEARCH -->
-    <div class="topic-section">
-        <div class="topic-label">Policy research</div>
+                    <div>
+                        <h2>Preventive Restructuring</h2>
+                        <p>Published by Corporate Law Academy.</p>
+                    </div>
 
-        <a href="https://iusatb.wixsite.com/online/post/nuclear-energy-in-italy" target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">Nuclear energy in Italy</div>
-                <div class="pub-platform">Ius ATB</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+                    <span class="featured-arrow">↗</span>
+                </a>
+            </section>
 
-        <a href="https://iusatb.wixsite.com/online/post/referendums-around-the-world" target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">Referendums around the world — a comparative overview</div>
-                <div class="pub-platform">Ius ATB</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+            <section class="archive-wrap">
+                <div class="archive-heading">
+                    <h2>Archive</h2>
+                    <span id="resultsCount">15 published pieces</span>
+                </div>
 
-        <a href="https://voycecommunity.eu/our-work-1/f/progression-thanks-to-the-space-economy" target="_blank"
-            class="pub-card">
-            <div>
-                <div class="pub-title">Progression thanks to space economy</div>
-                <div class="pub-platform">Voyce Community</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+                <div class="archive-list" id="archiveList">
 
-    </div>
+                    <a href="https://www.corporatelawacademy.net/post/openai-restructuring" target="_blank"
+                        rel="noopener noreferrer" class="pub-row publication-item" data-category="business-finance"
+                        data-search="the restructuring of openai corporate law academy business finance">
+                        <div class="pub-index">01</div>
+                        <div class="pub-category"><span>Business &amp; Finance</span></div>
+                        <div class="pub-main">
+                            <h3>The restructuring of OpenAI</h3>
+                            <div class="pub-platform">Corporate Law Academy</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
 
-    <!-- LAW & TECH -->
-    <div class="topic-section">
-        <div class="topic-label">Law &amp; tech</div>
+                    <a href="https://www.corporatelawacademy.net/post/credit-linked-notes-a-look-at-structured-finance-tools"
+                        target="_blank" rel="noopener noreferrer" class="pub-row publication-item"
+                        data-category="business-finance"
+                        data-search="credit-linked notes a look at structured finance tools corporate law academy business finance">
+                        <div class="pub-index">02</div>
+                        <div class="pub-category"><span>Business &amp; Finance</span></div>
+                        <div class="pub-main">
+                            <h3>Credit-linked notes — a look at structured finance tools</h3>
+                            <div class="pub-platform">Corporate Law Academy</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
 
-        <a href="/article/intellectual-property" target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">Intellectual property in Italy and the EU</div>
-                <div class="pub-platform">Law Talk Today</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+                    <a href="/article/buy-now-pay-later" class="pub-row publication-item"
+                        data-category="business-finance" data-search="the rise of bnpl law talk today business finance">
+                        <div class="pub-index">03</div>
+                        <div class="pub-category"><span>Business &amp; Finance</span></div>
+                        <div class="pub-main">
+                            <h3>The rise of BNPL</h3>
+                            <div class="pub-platform">Law Talk Today</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
 
-        <a href="/article/monopoly-of-app-store-and-apple" target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">Monopoly of App Store and Apple</div>
-                <div class="pub-platform">Law Talk Today</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+                    <a href="https://www.corporatelawacademy.net/post/the-market-s-reaction-to-trump-2-0"
+                        target="_blank" rel="noopener noreferrer" class="pub-row publication-item"
+                        data-category="business-finance"
+                        data-search="the market reaction to trump 2.0 corporate law academy business finance">
+                        <div class="pub-index">04</div>
+                        <div class="pub-category"><span>Business &amp; Finance</span></div>
+                        <div class="pub-main">
+                            <h3>The market reaction to Trump 2.0</h3>
+                            <div class="pub-platform">Corporate Law Academy</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
 
-        <a href="https://voycecommunity.eu/our-work-1/f/insurance-constraints-in-the-space-sector?blogcategory=Aerospace+%26+Defence"
-            target="_blank" class="pub-card">
-            <div>
-                <div class="pub-title">NewSpace economy &amp; insurance law in the EU</div>
-                <div class="pub-platform">Voyce Community</div>
-            </div>
-            <span class="pub-arrow">→</span>
-        </a>
+                    <a href="https://www.corporatelawacademy.net/post/the-ascend-of-colossal-biotech-cloning-and-de-extinction"
+                        target="_blank" rel="noopener noreferrer" class="pub-row publication-item"
+                        data-category="business-finance"
+                        data-search="the ascend of colossal biotech corporate law academy business finance">
+                        <div class="pub-index">05</div>
+                        <div class="pub-category"><span>Business &amp; Finance</span></div>
+                        <div class="pub-main">
+                            <h3>The ascend of Colossal Biotech</h3>
+                            <div class="pub-platform">Corporate Law Academy</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
 
-        <div class="pub-card coming-soon">
-            <div>
-                <div class="pub-title">Pharma law — holistic exploration of the field</div>
-                <div class="pub-platform">To be published</div>
-            </div>
-            <span class="coming-badge">Coming soon</span>
+                    <a href="https://www.corporatelawacademy.net/post/polizze-w-i-e-gestione-del-rischio-nei-contratti-di-acquisizione-societaria-tra-normativa-e-prassi"
+                        target="_blank" rel="noopener noreferrer" class="pub-row publication-item"
+                        data-category="business-finance"
+                        data-search="polizze w&i corporate law academy business finance">
+                        <div class="pub-index">06</div>
+                        <div class="pub-category"><span>Business &amp; Finance</span></div>
+                        <div class="pub-main">
+                            <h3>Polizze W&amp;I</h3>
+                            <div class="pub-platform">Corporate Law Academy</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
+
+                    <a href="/article/predatory-lending" class="pub-row publication-item"
+                        data-category="business-finance"
+                        data-search="predatory lending a danger to society law talk today business finance">
+                        <div class="pub-index">07</div>
+                        <div class="pub-category"><span>Business &amp; Finance</span></div>
+                        <div class="pub-main">
+                            <h3>Predatory lending — a danger to society</h3>
+                            <div class="pub-platform">Law Talk Today</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
+
+                    <a href="/article/smart-contracts" class="pub-row publication-item" data-category="business-finance"
+                        data-search="smart contracts law talk today business finance">
+                        <div class="pub-index">08</div>
+                        <div class="pub-category"><span>Business &amp; Finance</span></div>
+                        <div class="pub-main">
+                            <h3>Smart contracts</h3>
+                            <div class="pub-platform">Law Talk Today</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
+
+                    <a href="https://iusatb.wixsite.com/online/post/nuclear-energy-in-italy" target="_blank"
+                        rel="noopener noreferrer" class="pub-row publication-item" data-category="policy"
+                        data-search="nuclear energy in italy ius atb policy research">
+                        <div class="pub-index">09</div>
+                        <div class="pub-category"><span>Policy Research</span></div>
+                        <div class="pub-main">
+                            <h3>Nuclear energy in Italy</h3>
+                            <div class="pub-platform">Ius ATB</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
+
+                    <a href="https://iusatb.wixsite.com/online/post/referendums-around-the-world" target="_blank"
+                        rel="noopener noreferrer" class="pub-row publication-item" data-category="policy"
+                        data-search="referendums around the world a comparative overview ius atb policy research">
+                        <div class="pub-index">10</div>
+                        <div class="pub-category"><span>Policy Research</span></div>
+                        <div class="pub-main">
+                            <h3>Referendums around the world — a comparative overview</h3>
+                            <div class="pub-platform">Ius ATB</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
+
+                    <a href="https://voycecommunity.eu/our-work-1/f/progression-thanks-to-the-space-economy"
+                        target="_blank" rel="noopener noreferrer" class="pub-row publication-item"
+                        data-category="policy"
+                        data-search="progression thanks to space economy voyce community policy research">
+                        <div class="pub-index">11</div>
+                        <div class="pub-category"><span>Policy Research</span></div>
+                        <div class="pub-main">
+                            <h3>Progression thanks to space economy</h3>
+                            <div class="pub-platform">Voyce Community</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
+
+                    <a href="/article/intellectual-property" class="pub-row publication-item" data-category="law-tech"
+                        data-search="intellectual property in italy and the eu law talk today law tech">
+                        <div class="pub-index">12</div>
+                        <div class="pub-category"><span>Law &amp; Tech</span></div>
+                        <div class="pub-main">
+                            <h3>Intellectual property in Italy and the EU</h3>
+                            <div class="pub-platform">Law Talk Today</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
+
+                    <a href="/article/monopoly-of-app-store-and-apple" class="pub-row publication-item"
+                        data-category="law-tech" data-search="monopoly of app store and apple law talk today law tech">
+                        <div class="pub-index">13</div>
+                        <div class="pub-category"><span>Law &amp; Tech</span></div>
+                        <div class="pub-main">
+                            <h3>Monopoly of App Store and Apple</h3>
+                            <div class="pub-platform">Law Talk Today</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
+
+                    <a href="https://voycecommunity.eu/our-work-1/f/insurance-constraints-in-the-space-sector?blogcategory=Aerospace+%26+Defence"
+                        target="_blank" rel="noopener noreferrer" class="pub-row publication-item"
+                        data-category="law-tech"
+                        data-search="newspace economy insurance law in the eu voyce community law tech">
+                        <div class="pub-index">14</div>
+                        <div class="pub-category"><span>Law &amp; Tech</span></div>
+                        <div class="pub-main">
+                            <h3>NewSpace economy &amp; insurance law in the EU</h3>
+                            <div class="pub-platform">Voyce Community</div>
+                        </div>
+                        <span class="pub-arrow">↗</span>
+                    </a>
+
+                    <div class="pub-row publication-item coming-soon" data-category="law-tech"
+                        data-search="pharma law holistic exploration of the field to be published law tech">
+                        <div class="pub-index">15</div>
+                        <div class="pub-category"><span>Law &amp; Tech</span></div>
+                        <div class="pub-main">
+                            <h3>Pharma law — holistic exploration of the field</h3>
+                            <div class="pub-platform">To be published</div>
+                            <span class="coming-badge">Coming soon</span>
+                        </div>
+                        <span class="pub-arrow">—</span>
+                    </div>
+
+                    <div class="pub-row publication-item coming-soon" data-category="law-tech"
+                        data-search="restructuring procedures a look at the italian and eu framework to be republished law tech">
+                        <div class="pub-index">16</div>
+                        <div class="pub-category"><span>Law &amp; Tech</span></div>
+                        <div class="pub-main">
+                            <h3>Restructuring procedures — a look at the Italian and EU framework</h3>
+                            <div class="pub-platform">To be republished</div>
+                            <span class="coming-badge">Coming soon</span>
+                        </div>
+                        <span class="pub-arrow">—</span>
+                    </div>
+
+                    <div class="pub-empty" id="emptyState">
+                        No publications match your search.
+                    </div>
+
+                </div>
+            </section>
+
         </div>
 
-        <div class="pub-card coming-soon">
-            <div>
-                <div class="pub-title">Restructuring procedures — a look at the Italian and EU framework</div>
-                <div class="pub-platform">To be republished</div>
-            </div>
-            <span class="coming-badge">Coming soon</span>
-        </div>
+    </main>
 
-    </div>
+    <footer class="pub-footer">
+        <span>© 2026 Simone Colavecchia</span>
+        <span>Milano, Italy</span>
+    </footer>
 
     <script>
-        const sections = document.querySelectorAll('.topic-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        sections.forEach(section => observer.observe(section));
-
         const searchBar = document.getElementById('searchBar');
+        const filters = document.querySelectorAll('.pub-filter');
+        const items = document.querySelectorAll('.publication-item');
+        const emptyState = document.getElementById('emptyState');
+        const resultsCount = document.getElementById('resultsCount');
 
-        searchBar.addEventListener('input', function () {
-            const query = this.value.toLowerCase();
-            const cards = document.querySelectorAll('.pub-card');
+        let activeFilter = 'all';
 
-            cards.forEach(card => {
-                const title = card.querySelector('.pub-title').textContent.toLowerCase();
-                const platform = card.querySelector('.pub-platform').textContent.toLowerCase();
+        function updatePublications() {
+            const query = searchBar.value.trim().toLowerCase();
+            let visibleArchiveItems = 0;
 
-                if (title.includes(query) || platform.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
+            items.forEach(item => {
+                const searchText = (item.dataset.search || '').toLowerCase();
+                const category = item.dataset.category || '';
+
+                const matchesSearch = searchText.includes(query);
+                const matchesFilter = activeFilter === 'all' || category === activeFilter;
+                const isVisible = matchesSearch && matchesFilter;
+
+                item.style.display = isVisible ? '' : 'none';
+
+                if (isVisible && item.classList.contains('pub-row') && !item.classList.contains('coming-soon')) {
+                    visibleArchiveItems += 1;
                 }
             });
 
-            sections.forEach(section => {
-                const visibleCards = [...section.querySelectorAll('.pub-card')]
-                    .filter(card => card.style.display !== 'none');
-                section.style.display = visibleCards.length ? 'block' : 'none';
+            emptyState.style.display = visibleArchiveItems === 0 ? 'block' : 'none';
+
+            resultsCount.textContent = visibleArchiveItems === 1
+                ? '1 published piece'
+                : `${visibleArchiveItems} published pieces`;
+        }
+
+        searchBar.addEventListener('input', updatePublications);
+
+        filters.forEach(button => {
+            button.addEventListener('click', () => {
+                filters.forEach(item => item.classList.remove('active'));
+                button.classList.add('active');
+                activeFilter = button.dataset.filter;
+                updatePublications();
             });
         });
     </script>
