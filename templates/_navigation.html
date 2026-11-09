@@ -1,0 +1,15 @@
+<nav class="site-nav" aria-label="Main navigation">
+    <a href="/" class="nav-mark">Simone Colavecchia</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>
+        <span class="nav-toggle-label">Menu</span>
+        <span class="nav-toggle-icon" aria-hidden="true"></span>
+    </button>
+    <div class="nav-links" id="site-navigation">
+        <a href="/#profile">Profile</a>
+        <a href="/#work">Selected Work</a>
+        <a href="/publications"{% if request.path == '/publications' %} aria-current="page"{% endif %}>Publications</a>
+        <a href="/#contact">Contact</a>
+        <a href="/download/cv" class="nav-cv">CV ↓</a>
+    </div>
+</nav>
+<script src="{{ url_for('static', filename='navigation.js') }}" defer></script>
